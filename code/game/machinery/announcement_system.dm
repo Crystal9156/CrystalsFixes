@@ -32,22 +32,22 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	radio = new /obj/item/radio/headset/silicon/ai(src)
 	update_icon()
 
-/obj/machinery/announcement_system/update_icon_state()
+/obj/machinery/announcement_system/update_icon()
 	if(is_operational())
 		icon_state = (panel_open ? "AAS_On_Open" : "AAS_On")
 	else
 		icon_state = (panel_open ? "AAS_Off_Open" : "AAS_Off")
 
-/obj/machinery/announcement_system/update_overlays()
-	. =..()
+
+	cut_overlays()
 	if(arrivalToggle)
-		. += greenlight
+		add_overlay(greenlight)
 
 	if(newheadToggle)
-		. += pinklight
+		add_overlay(pinklight)
 
 	if(stat & BROKEN)
-		. += errorlight
+		add_overlay(errorlight)
 
 /obj/machinery/announcement_system/Destroy()
 	QDEL_NULL(radio)

@@ -23,7 +23,7 @@
 	on = area.lightswitch
 	update_icon()
 
-/obj/machinery/light_switch/update_icon_state()
+/obj/machinery/light_switch/update_icon()
 	if(stat & NOPOWER)
 		icon_state = "light-p"
 	else

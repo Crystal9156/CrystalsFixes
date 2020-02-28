@@ -35,7 +35,7 @@
 		return FALSE
 	return TRUE
 
-/obj/machinery/ntnet_relay/update_icon_state()
+/obj/machinery/ntnet_relay/update_icon()
 	if(is_operational())
 		icon_state = "bus"
 	else

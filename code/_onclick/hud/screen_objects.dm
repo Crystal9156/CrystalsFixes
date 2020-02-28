@@ -166,12 +166,14 @@
 	var/static/mutable_appearance/blocked_overlay = mutable_appearance('icons/mob/screen_gen.dmi', "blocked")
 	var/held_index = 0
 
-/obj/screen/inventory/hand/update_overlays()
+/obj/screen/inventory/hand/update_icon()
 	. = ..()
 
 	if(!handcuff_overlay)
 		var/state = (!(held_index % 2)) ? "markus" : "gabrielle"
 		handcuff_overlay = mutable_appearance('icons/mob/screen_gen.dmi', state)
+
+	cut_overlay(list(handcuff_overlay, blocked_overlay, "hand_active"))
 
 	if(!hud?.mymob)
 		return
@@ -179,14 +181,14 @@
 	if(iscarbon(hud.mymob))
 		var/mob/living/carbon/C = hud.mymob
 		if(C.handcuffed)
-			. += handcuff_overlay
+			add_overlay(handcuff_overlay)
 
 		if(held_index)
 			if(!C.has_hand_for_held_index(held_index))
-				. += blocked_overlay
+				add_overlay(blocked_overlay)
 
 	if(held_index == hud.mymob.active_hand_index)
-		. += "hand_active"
+		add_overlay("hand_active")
 
 
 /obj/screen/inventory/hand/Click(location, control, params)

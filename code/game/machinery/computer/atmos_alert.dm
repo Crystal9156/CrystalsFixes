@@ -78,20 +78,23 @@
 	update_icon()
 	return
 
-/obj/machinery/computer/atmos_alert/update_overlays()
-	. = ..()
+/obj/machinery/computer/atmos_alert/update_icon()
+	..()
+	cut_overlays()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 	var/overlay_state = icon_screen
 	if(stat & (NOPOWER|BROKEN))
-		. |= "[icon_keyboard]_off"
+		add_overlay("[icon_keyboard]_off")
 		return
-	. |= icon_keyboard
+	add_overlay(icon_keyboard)
 	if(priority_alarms.len)
 		overlay_state = "alert:2"
+		add_overlay("alert:2")
 	else if(minor_alarms.len)
 		overlay_state = "alert:1"
+		add_overlay("alert:1")
 	else
 		overlay_state = "alert:0"
-	. |= overlay_state
+		add_overlay("alert:0")
 	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, layer, plane, dir)
 	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir, alpha=128)

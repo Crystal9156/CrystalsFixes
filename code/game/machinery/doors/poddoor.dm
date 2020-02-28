@@ -77,7 +77,7 @@
 			flick("closing", src)
 			playsound(src, 'sound/machines/blastdoor.ogg', 30, 1)
 
-/obj/machinery/door/poddoor/update_icon_state()
+/obj/machinery/door/poddoor/update_icon()
 	if(density)
 		icon_state = "closed"
 	else

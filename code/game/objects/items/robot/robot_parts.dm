@@ -39,20 +39,20 @@
 	chest.cell = new /obj/item/stock_parts/cell/high/plus(chest)
 	..()
 
-/obj/item/robot_suit/update_overlays()
-	. = ..()
+/obj/item/robot_suit/update_icon()
+	cut_overlays()
 	if(l_arm)
-		. += "[l_arm.icon_state]+o"
+		add_overlay("[l_arm.icon_state]+o")
 	if(r_arm)
-		. += "[r_arm.icon_state]+o"
+		add_overlay("[r_arm.icon_state]+o")
 	if(chest)
-		. += "[chest.icon_state]+o"
+		add_overlay("[chest.icon_state]+o")
 	if(l_leg)
-		. += "[l_leg.icon_state]+o"
+		add_overlay("[l_leg.icon_state]+o")
 	if(r_leg)
-		. += "[r_leg.icon_state]+o"
+		add_overlay("[r_leg.icon_state]+o")
 	if(head)
-		. += "[head.icon_state]+o"
+		add_overlay("[head.icon_state]+o")
 
 /obj/item/robot_suit/proc/check_completion()
 	if(src.l_arm && src.r_arm)

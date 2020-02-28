@@ -175,10 +175,11 @@
 	clockwork = TRUE //it'd look very weird
 	light_power = 0
 
-/obj/machinery/computer/security/telescreen/update_icon_state()
+/obj/machinery/computer/security/telescreen/update_icon()
 	icon_state = initial(icon_state)
 	if(stat & BROKEN)
 		icon_state += "b"
+	return
 
 /obj/machinery/computer/security/telescreen/entertainment
 	name = "entertainment monitor"

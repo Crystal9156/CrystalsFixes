@@ -50,10 +50,11 @@
 	user.visible_message("<span class='suicide'>[user] beating [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return BRUTELOSS
 
-/obj/item/storage/box/update_overlays()
+/obj/item/storage/box/update_icon()
 	. = ..()
 	if(illustration)
-		. += illustration
+		cut_overlays()
+		add_overlay(illustration)
 
 /obj/item/storage/box/attack_self(mob/user)
 	..()
@@ -865,11 +866,10 @@
 	foldable = null
 	var/design = NODESIGN
 
-/obj/item/storage/box/papersack/update_icon_state()
+/obj/item/storage/box/papersack/update_icon()
 	if(contents.len == 0)
 		icon_state = "[item_state]"
-	else
-		icon_state = "[item_state]_closed"
+	else icon_state = "[item_state]_closed"
 
 /obj/item/storage/box/papersack/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/pen))

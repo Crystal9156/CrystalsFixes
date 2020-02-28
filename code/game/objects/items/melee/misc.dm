@@ -453,10 +453,12 @@
 		held_sausage = null
 	update_icon()
 
-/obj/item/melee/roastingstick/update_overlays()
+/obj/item/melee/roastingstick/update_icon()
 	. = ..()
+	cut_overlays()
 	if (held_sausage)
-		. += mutable_appearance(icon, "roastingstick_sausage")
+		var/mutable_appearance/sausage = mutable_appearance(icon, "roastingstick_sausage")
+		add_overlay(sausage)
 
 /obj/item/melee/roastingstick/proc/extend(user)
 	to_chat(user, "<span class ='warning'>You extend [src].</span>")

@@ -454,7 +454,7 @@
 	on = FALSE
 	update_icon()
 
-/obj/item/flashlight/glowstick/update_icon_state()
+/obj/item/flashlight/glowstick/update_icon()
 	item_state = "glowstick"
 	cut_overlays()
 	if(!fuel)

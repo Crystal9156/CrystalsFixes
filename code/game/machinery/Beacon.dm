@@ -28,7 +28,7 @@
 	update_icon()
 
 // update the icon_state
-/obj/machinery/bluespace_beacon/update_icon_state()
+/obj/machinery/bluespace_beacon/update_icon()
 	var/state="floor_beacon"
 
 	if(invisibility)

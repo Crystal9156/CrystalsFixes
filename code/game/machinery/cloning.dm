@@ -477,30 +477,24 @@
 
 	flesh_number = unattached_flesh.len
 
-/obj/machinery/clonepod/update_icon_state()
+/obj/machinery/clonepod/update_icon()
+	cut_overlays()
+
 	if(mess)
 		icon_state = "pod_g"
-	else if(occupant)
-		icon_state = "pod_1"
-	else
-		icon_state = "pod_0"
-
-	if(panel_open)
-		icon_state = "pod_0_maintenance"
-
-/obj/machinery/clonepod/update_overlays()
-	. = ..()
-	if(mess)
 		var/image/gib1 = image(CRYOMOBS, "gibup")
 		var/image/gib2 = image(CRYOMOBS, "gibdown")
 		gib1.pixel_y = 27 + round(sin(world.time) * 3)
 		gib1.pixel_x = round(sin(world.time * 3))
 		gib2.pixel_y = 27 + round(cos(world.time) * 3)
 		gib2.pixel_x = round(cos(world.time * 3))
-		. += gib2
-		. += gib1
-		. += "cover-on"
+		add_overlay(gib2)
+		add_overlay(gib1)
+		add_overlay("cover-on")
+
 	else if(occupant)
+		icon_state = "pod_1"
+
 		var/image/occupant_overlay
 		var/completion = (flesh_number - unattached_flesh.len) / flesh_number
 
@@ -519,9 +513,15 @@
 		occupant_overlay.pixel_y = 27 + round(sin(world.time) * 3)
 		occupant_overlay.pixel_x = round(sin(world.time * 3))
 
-		. += occupant_overlay
-		. += "cover-on"
-	. += "panel"
+		add_overlay(occupant_overlay)
+		add_overlay("cover-on")
+	else
+		icon_state = "pod_0"
+
+	if(panel_open)
+		icon_state = "pod_0_maintenance"
+
+	add_overlay("panel")
 
 /*
  *	Manual -- A big ol' manual.

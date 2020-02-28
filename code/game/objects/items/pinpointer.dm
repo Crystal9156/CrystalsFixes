@@ -49,29 +49,29 @@
 /obj/item/pinpointer/proc/scan_for_target()
 	return
 
-/obj/item/pinpointer/update_overlays()
-	. = ..()
+/obj/item/pinpointer/update_icon()
+	cut_overlays()
 	if(!active)
 		return
 	if(!target)
-		. += "pinon[alert ? "alert" : ""]null"
+		add_overlay("pinon[alert ? "alert" : ""]null")
 		return
 	var/turf/here = get_turf(src)
 	var/turf/there = get_turf(target)
 	if(!here || !there || here.z != there.z)
-		. += "pinon[alert ? "alert" : ""]null"
+		add_overlay("pinon[alert ? "alert" : ""]null")
 		return
 	if(get_dist_euclidian(here,there) <= minimum_range)
-		. += "pinon[alert ? "alert" : ""]direct"
+		add_overlay("pinon[alert ? "alert" : ""]direct")
 	else
 		setDir(get_dir(here, there))
 		switch(get_dist(here, there))
 			if(1 to 8)
-				. += "pinon[alert ? "alert" : "close"]"
+				add_overlay("pinon[alert ? "alert" : "close"]")
 			if(9 to 16)
-				. += "pinon[alert ? "alert" : "medium"]"
+				add_overlay("pinon[alert ? "alert" : "medium"]")
 			if(16 to INFINITY)
-				. += "pinon[alert ? "alert" : "far"]"
+				add_overlay("pinon[alert ? "alert" : "far"]")
 
 /obj/item/pinpointer/crew // A replacement for the old crew monitoring consoles
 	name = "crew pinpointer"

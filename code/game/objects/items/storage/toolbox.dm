@@ -33,11 +33,14 @@ GLOBAL_LIST_EMPTY(rubber_toolbox_icons)
 	. = ..()
 	update_icon()
 
-/obj/item/storage/toolbox/update_overlays()
-	. = ..()
+/obj/item/storage/toolbox/update_icon()
+	..()
+	cut_overlays()
+	if(length(blood_DNA))
+		add_blood_overlay()
 	if(has_latches)
 		var/icon/I = icon('icons/obj/storage.dmi', latches)
-		. += I
+		add_overlay(I)
 
 
 /obj/item/storage/toolbox/suicide_act(mob/user)

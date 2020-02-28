@@ -21,9 +21,6 @@
 	handedness = prob(50)
 	icon_state = "cursehand[handedness]"
 
-/obj/item/projectile/curse_hand/update_icon_state()
-	icon_state = "[initial(icon_state)][handedness]"
-
 /obj/item/projectile/curse_hand/fire(setAngle)
 	if(starting)
 		arm = starting.Beam(src, icon_state = "curse[handedness]", time = INFINITY, maxdistance = INFINITY, beam_type=/obj/effect/ebeam/curse_arm)
@@ -43,8 +40,7 @@
 	if(CHECK_BITFIELD(movement_type, UNSTOPPABLE))
 		playsound(src, 'sound/effects/curse3.ogg', 25, 1, -1)
 	var/turf/T = get_step(src, dir)
-	var/obj/effect/temp_visual/dir_setting/curse/hand/leftover = new(T, dir)
-	leftover.icon_state = icon_state
+	new/obj/effect/temp_visual/dir_setting/curse/hand(T, dir, handedness)
 	for(var/obj/effect/temp_visual/dir_setting/curse/grasp_portal/G in starting)
 		qdel(G)
 	new /obj/effect/temp_visual/dir_setting/curse/grasp_portal/fading(starting, dir)

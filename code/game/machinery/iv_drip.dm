@@ -24,7 +24,7 @@
 	QDEL_NULL(beaker)
 	return ..()
 
-/obj/machinery/iv_drip/update_icon_state()
+/obj/machinery/iv_drip/update_icon()
 	if(attached)
 		if(mode)
 			icon_state = "injecting"
@@ -36,14 +36,13 @@
 		else
 			icon_state = "donateidle"
 
-/obj/machinery/iv_drip/update_overlays()
-	. = ..()
+	cut_overlays()
 
 	if(beaker)
 		if(attached)
-			. += "beakeractive"
+			add_overlay("beakeractive")
 		else
-			. += "beakeridle"
+			add_overlay("beakeridle")
 		if(beaker.reagents.total_volume)
 			var/mutable_appearance/filling_overlay = mutable_appearance('icons/obj/iv_drip.dmi', "reagent")
 
@@ -65,7 +64,7 @@
 					filling_overlay.icon_state = "reagent100"
 
 			filling_overlay.color = mix_color_from_reagents(beaker.reagents.reagent_list)
-			. += filling_overlay
+			add_overlay(filling_overlay)
 
 /obj/machinery/iv_drip/MouseDrop(mob/living/target)
 	. = ..()
@@ -228,9 +227,9 @@
 	desc = "An IV drip with an advanced infusion pump that can both drain blood into and inject liquids from attached containers. Blood packs are processed at an accelerated rate. This one is telescopic, and can be picked up and put down."
 	icon_state = "iv_drip"
 
-/obj/machinery/iv_drip/telescopic/update_icon_state()
+/obj/machinery/iv_drip/telescopic/update_icon()
 	..()
-	icon_state += "_tele"
+	icon_state = icon_state + "_tele"
 
 /obj/machinery/iv_drip/telescopic/AltClick(mob/user)
 	if (attached || beaker || !user.canUseTopic(src, BE_CLOSE))

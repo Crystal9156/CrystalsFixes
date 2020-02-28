@@ -42,7 +42,7 @@
 		else
 			do_animate("deny")
 
-/obj/machinery/door/password/update_icon_state()
+/obj/machinery/door/password/update_icon()
 	if(density)
 		icon_state = "closed"
 	else

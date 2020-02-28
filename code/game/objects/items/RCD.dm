@@ -552,8 +552,8 @@ RLD
 	explosion(src, 0, 0, 3, 1, flame_range = 1)
 	qdel(src)
 
-/obj/item/construction/rcd/update_overlays()
-	. = ..()
+/obj/item/construction/rcd/update_icon()
+	..()
 	if(has_ammobar)
 		var/ratio = CEILING((matter / max_matter) * ammo_sections, 1)
 		cut_overlays()	//To prevent infinite stacking of overlays
@@ -707,10 +707,11 @@ RLD
 	else
 		..()
 
-/obj/item/construction/rld/update_overlays()
-	. = ..()
+/obj/item/construction/rld/update_icon()
+	..()
 	var/ratio = CEILING((matter / max_matter) * ammo_sections, 1)
-	. += "rld_light[ratio]"
+	cut_overlays()	//To prevent infinite stacking of overlays
+	add_overlay("rld_light[ratio]")
 
 /obj/item/construction/rld/attack_self(mob/user)
 	..()

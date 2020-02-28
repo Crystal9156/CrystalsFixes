@@ -44,8 +44,8 @@ GLOBAL_LIST_INIT(possible_uplinker_IDs, list("Alfa","Bravo","Charlie","Delta","E
 	else
 		to_chat(user, "<span class='notice'>[I] doesn't appear to be an uplink...</span>")
 
-/obj/machinery/computer/telecrystals/uplinker/update_overlays()
-	. = ..()
+/obj/machinery/computer/telecrystals/uplinker/update_icon()
+	..()
 	if(uplinkholder)
 		add_overlay("[initial(icon_state)]-closed")
 

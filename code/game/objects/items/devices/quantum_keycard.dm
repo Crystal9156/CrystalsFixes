@@ -27,7 +27,7 @@
 		qpad = null
 	return TRUE
 
-/obj/item/quantum_keycard/update_icon_state()
+/obj/item/quantum_keycard/update_icon()
 	if(qpad)
 		icon_state = "quantum_keycard_on"
 	else

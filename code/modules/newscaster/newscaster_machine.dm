@@ -54,6 +54,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	return ..()
 
 /obj/machinery/newscaster/update_icon()
+	cut_overlays()
 	if(stat & (NOPOWER|BROKEN))
 		icon_state = "newscaster_off"
 	else
@@ -61,23 +62,19 @@ GLOBAL_LIST_EMPTY(allCasters)
 			icon_state = "newscaster_wanted"
 		else
 			icon_state = "newscaster_normal"
-
-/obj/machinery/newscaster/update_overlays()
-	. = ..()
-
-	if(!(stat & (NOPOWER|BROKEN)) && !GLOB.news_network.wanted_issue.active && alert)
-		. += "newscaster_alert"
-
+			if(alert)
+				add_overlay("newscaster_alert")
 	var/hp_percent = obj_integrity * 100 /max_integrity
 	switch(hp_percent)
 		if(75 to 100)
 			return
 		if(50 to 75)
-			. += "crack1"
+			add_overlay("crack1")
 		if(25 to 50)
-			. += "crack2"
+			add_overlay("crack2")
 		else
-			. += "crack3"
+			add_overlay("crack3")
+
 
 /obj/machinery/newscaster/power_change()
 	if(stat & BROKEN)

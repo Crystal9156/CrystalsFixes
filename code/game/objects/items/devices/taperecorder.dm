@@ -83,7 +83,7 @@
 	eject(usr)
 
 
-/obj/item/taperecorder/update_icon_state()
+/obj/item/taperecorder/update_icon()
 	if(!mytape)
 		icon_state = "taperecorder_empty"
 	else if(recording)

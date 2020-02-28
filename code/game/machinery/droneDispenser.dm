@@ -199,7 +199,7 @@
 		if(istype(a, dispense_type))
 			.++
 
-/obj/machinery/droneDispenser/update_icon_state()
+/obj/machinery/droneDispenser/update_icon()
 	if(stat & (BROKEN|NOPOWER))
 		icon_state = icon_off
 	else if(mode == DRONE_RECHARGING)

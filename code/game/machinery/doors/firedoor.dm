@@ -171,20 +171,16 @@
 		if("closing")
 			flick("door_closing", src)
 
-/obj/machinery/door/firedoor/update_icon_state()
+/obj/machinery/door/firedoor/update_icon()
+	cut_overlays()
 	if(density)
 		icon_state = "door_closed"
+		if(welded)
+			add_overlay("welded")
 	else
 		icon_state = "door_open"
-
-/obj/machinery/door/firedoor/update_overlays()
-	. = ..()
-	if(!welded)
-		return
-	if(density)
-		. += "welded"
-	else
-		. += "welded_open"
+		if(welded)
+			add_overlay("welded_open")
 
 /obj/machinery/door/firedoor/open()
 	. = ..()
@@ -287,7 +283,8 @@
 		if(CONSTRUCTION_NOCIRCUIT)
 			. += "<span class='notice'>There are no <i>firelock electronics</i> in the frame. The frame could be <b>cut</b> apart.</span>"
 
-/obj/structure/firelock_frame/update_icon_state()
+/obj/structure/firelock_frame/update_icon()
+	..()
 	icon_state = "frame[constructionStep]"
 
 /obj/structure/firelock_frame/attackby(obj/item/C, mob/user)

@@ -246,7 +246,7 @@
 	QDEL_NULL(sliver)
 	return ..()
 
-/obj/item/hemostat/supermatter/update_icon_state()
+/obj/item/hemostat/supermatter/update_icon()
 	if(sliver)
 		icon_state = "supermatter_tongs_loaded"
 	else

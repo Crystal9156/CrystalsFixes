@@ -77,7 +77,8 @@
 	to_chat(user, "<span class='notice'>You use the cryptographic sequencer on [src].</span>")
 	return TRUE
 
-/obj/machinery/recycler/update_icon_state()
+/obj/machinery/recycler/update_icon()
+	..()
 	var/is_powered = !(stat & (BROKEN|NOPOWER))
 	if(safety_mode)
 		is_powered = FALSE

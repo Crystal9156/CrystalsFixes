@@ -37,7 +37,7 @@
 	SSjukeboxes.removejukebox(SSjukeboxes.findjukeboxindex(src))
 	. = ..()
 
-/obj/item/boombox/update_icon_state()
+/obj/item/boombox/update_icon()
 	icon_state = "[baseiconstate]_[boomingandboxing ? "on" : "off"]"
 	return
 
@@ -48,11 +48,8 @@
 	baseiconstate = "raiqbawks"
 	availabletrackids = list("hotline.ogg","chiptune.ogg","genesis.ogg")
 
-/obj/item/boombox/raiq/Initialize()
+/obj/item/boombox/raiq/update_icon()
 	. = ..()
-	RegisterSignal(src, COMSIG_ATOM_UPDATED_ICON, .proc/start_party)
-
-/obj/item/boombox/raiq/proc/start_party()
 	if(boomingandboxing)
 		START_PROCESSING(SSobj, src)
 	else
@@ -61,3 +58,4 @@
 
 /obj/item/boombox/raiq/process()
 	set_light(5,0.95,pick("#d87aff","#7a7aff","#89ecff","#b88eff","#ff59ad"))
+	return
